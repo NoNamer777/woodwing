@@ -84,24 +84,27 @@
         "frontendProject": "studio-desktop-app-ui",
         "makerOptionsPath": "{projectRoot}/electron-builder.json",
         "name": "studio-desktop-app",
-        "outputPath": "dist/executables/studio-desktop-app",
         "sourcePath": "dist/apps"
       },
       "defaultConfiguration": "windows",
       "configurations": {
         "windows": {
+          "outputPath": "dist/executables/studio-desktop-app/window",
           "platform": ["windows"],
           "arch": "x64"
         },
         "windows-arm": {
+          "outputPath": "dist/executables/studio-desktop-app/window-arm",
           "platform": ["windows"],
           "arch": "arm64"
         },
         "mac": {
+          "outputPath": "dist/executables/studio-desktop-app/mac",
           "platform": ["mac"],
           "arch": "x64"
         },
         "mac-arm": {
+          "outputPath": "dist/executables/studio-desktop-app/mac-arm",
           "platform": ["mac"],
           "arch": "arm64"
         }
