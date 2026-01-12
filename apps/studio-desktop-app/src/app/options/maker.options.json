@@ -2,5 +2,19 @@
   "$schema": "../../../../../node_modules/nx-electron/src/validation/maker.schema.json",
   "productName": "studio-desktop-app",
   "copyright": "Copyright © 2026 ${author}",
-  "asar": true
+  "asar": true,
+  "appId": "com.woodwing.studio-desktop-app",
+  "nativeRebuilder": "parallel",
+  "win": {
+    "target": "nsis"
+  },
+  "nsis": {
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": true,
+    "menuCategory": true,
+    "oneClick": false,
+    "perMachine": false,
+    "runAfterFinish": false,
+    "selectPerMachineByDefault": true
+  }
 }
