@@ -25,21 +25,6 @@ export default class App {
     }
   }
 
-  private static onClose() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    App.mainWindow = null;
-  }
-
-  private static onRedirect(event: any, url: string) {
-    if (url !== App.mainWindow.webContents.getURL()) {
-      // this is a normal external redirect, open it in a new browser window
-      event.preventDefault();
-      shell.openExternal(url);
-    }
-  }
-
   private static onReady() {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
