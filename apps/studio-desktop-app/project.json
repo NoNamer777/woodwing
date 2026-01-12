@@ -51,6 +51,25 @@
         "name": "studio-desktop-app",
         "outputPath": "dist/packages/studio-desktop-app",
         "prepackageOnly": true
+      },
+      "defaultConfiguration": "windows",
+      "configurations": {
+        "windows": {
+          "platform": ["windows"],
+          "arch": "x64"
+        },
+        "windows-arm": {
+          "platform": ["windows"],
+          "arch": "arm64"
+        },
+        "mac": {
+          "platform": ["mac"],
+          "arch": "x64"
+        },
+        "mac-arm": {
+          "platform": ["mac"],
+          "arch": "arm64"
+        }
       }
     },
     "make": {
@@ -64,6 +83,25 @@
         "name": "studio-desktop-app",
         "outputPath": "dist/executables/studio-desktop-app",
         "sourcePath": "dist/apps"
+      },
+      "defaultConfiguration": "windows",
+      "configurations": {
+        "windows": {
+          "platform": ["windows"],
+          "arch": "x64"
+        },
+        "windows-arm": {
+          "platform": ["windows"],
+          "arch": "arm64"
+        },
+        "mac": {
+          "platform": ["mac"],
+          "arch": "x64"
+        },
+        "mac-arm": {
+          "platform": ["mac"],
+          "arch": "arm64"
+        }
       }
     },
     "lint": {
