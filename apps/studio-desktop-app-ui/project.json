@@ -13,7 +13,6 @@
       "options": {
         "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "browser": "{projectRoot}/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "{projectRoot}/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
