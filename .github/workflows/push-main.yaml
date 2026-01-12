@@ -1,0 +1,47 @@
+name: Push to main
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          cache: npm
+          cache-dependency-path: ./package-lock.json
+          node-version-file: ./.tool-versions
+
+      - name: Install dependencies
+        shell: bash
+        run: npm ci
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Run linting
+        shell: bash
+        run: npx nx affected -t lint --base $NX_BASE --head $NX_HEAD
+
+      - name: Check formatting
+        shell: bash
+        run: npx nx format:check --base $NX_BASE --head $NX_HEAD
+
+      - name: Compile projects
+        shell: bash
+        run: npx nx affected -t build --base $NX_BASE --head $NX_HEAD
+
+      - name: Run tests
+        shell: bash
+        run: npx nx affected -t test --base $NX_BASE --head $NX_HEAD
