@@ -1,0 +1,16 @@
+name: Create installer
+description: Creates a installer for the desktop application
+inputs:
+  configuration:
+    required: true
+    description: The task configuration to use
+    default: windows
+runs:
+  using: composite
+  steps:
+    - name: Setup workspace
+      uses: ./.github/actions/setup-workspace
+
+    - name: Create installer
+      shell: bash
+      run: npx nx make studio-desktop-app -c ${{ inputs.configuration }}

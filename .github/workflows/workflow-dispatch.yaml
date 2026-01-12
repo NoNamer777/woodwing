@@ -1,0 +1,60 @@
+name: Workflow dispatch
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  create-installers:
+    strategy:
+      matrix:
+        runner:
+          - windows-2025
+          - windows-11-arm
+          - macos-15
+          - macos-15-intel
+        configurations:
+          - windows
+          - windows-arm
+          - mac
+          - mac-arm
+        exclude:
+          - runner: windows-2025
+            configurations: windows-arm
+          - runner: windows-2025
+            configurations: mac
+          - runner: windows-2025
+            configurations: mac-arm
+
+          - runner: windows-11-arm
+            configurations: windows
+          - runner: windows-11-arm
+            configurations: mac
+          - runner: windows-11-arm
+            configurations: mac-arm
+
+          - runner: macos-15
+            configurations: windows
+          - runner: macos-15
+            configurations: windows-arm
+          - runner: macos-15
+            configurations: mac
+
+          - runner: macos-15-intel
+            configurations: windows
+          - runner: macos-15-intel
+            configurations: windows-arm
+          - runner: macos-15-intel
+            configurations: mac-arm
+    name: Create desktop app installers
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Check repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
+      - name: Create installer
+        uses: ./.github/actions/create-installer
+        with:
+          configuration: ${{ matrix.configurations }}
