@@ -45,9 +45,10 @@
       "outputs": ["{options.outputPath}"],
       "cache": true,
       "options": {
-        "name": "studio-desktop-app",
         "frontendProject": "studio-desktop-app-ui",
         "sourcePath": "dist/apps",
+        "makerOptionsPath": "{projectRoot}/electron-builder.json",
+        "name": "studio-desktop-app",
         "outputPath": "dist/packages/studio-desktop-app",
         "prepackageOnly": true
       }
@@ -58,10 +59,11 @@
       "outputs": ["{options.outputPath}"],
       "cache": true,
       "options": {
-        "name": "studio-desktop-app",
         "frontendProject": "studio-desktop-app-ui",
-        "sourcePath": "dist/apps",
-        "outputPath": "dist/executables/studio-desktop-app"
+        "makerOptionsPath": "{projectRoot}/electron-builder.json",
+        "name": "studio-desktop-app",
+        "outputPath": "dist/executables/studio-desktop-app",
+        "sourcePath": "dist/apps"
       }
     },
     "lint": {

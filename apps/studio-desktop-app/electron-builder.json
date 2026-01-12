@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../../../node_modules/nx-electron/src/validation/maker.schema.json",
+  "$schema": "../../node_modules/nx-electron/src/validation/maker.schema.json",
   "productName": "studio-desktop-app",
   "copyright": "Copyright © 2026 ${author}",
   "asar": true,
