@@ -5,6 +5,9 @@
   "asar": true,
   "appId": "com.woodwing.studio-desktop-app",
   "nativeRebuilder": "parallel",
+  "extraMetadata": {
+    "description": "Studio Desktop App"
+  },
   "win": {
     "target": "nsis"
   },
