@@ -52,17 +52,8 @@
     "serve": {
       "executor": "@angular/build:dev-server",
       "continuous": true,
-      "configurations": {
-        "production": {
-          "buildTarget": "studio-desktop-app-ui:build:production"
-        },
-        "development": {
-          "buildTarget": "studio-desktop-app-ui:build:development"
-        }
-      },
-      "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "apps/studio-desktop-app-ui/proxy.conf.json"
+        "buildTarget": "studio-desktop-app-ui:build:development",
       }
     },
     "lint": {
