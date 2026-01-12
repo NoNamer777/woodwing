@@ -3,15 +3,18 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/studio-desktop-app/src",
   "projectType": "application",
+  "implicitDependencies": ["studio-desktop-app-ui"],
   "targets": {
     "build": {
       "executor": "nx-electron:build",
+      "dependsOn": ["^build"],
       "outputs": ["{options.outputPath}"],
+      "cache": true,
       "options": {
-        "outputPath": "dist/apps/studio-desktop-app",
-        "main": "apps/studio-desktop-app/src/main.ts",
-        "tsConfig": "apps/studio-desktop-app/tsconfig.app.json",
-        "assets": ["apps/studio-desktop-app/src/assets"]
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "main": "{projectRoot}/src/main.ts",
+        "tsConfig": "{projectRoot}/tsconfig.app.json",
+        "assets": ["{projectRoot}/src/assets"]
       },
       "configurations": {
         "production": {
@@ -20,8 +23,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/studio-desktop-app/src/environments/environment.ts",
-              "with": "apps/studio-desktop-app/src/environments/environment.prod.ts"
+              "replace": "{projectRoot}/src/environments/environment.ts",
+              "with": "{projectRoot}/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,33 +32,44 @@
     },
     "serve": {
       "executor": "nx-electron:execute",
+      "dependsOn": ["^serve"],
+      "continuous": true,
       "options": {
-        "buildTarget": "studio-desktop-app:build"
+        "buildTarget": "studio-desktop-app:build",
+        "inspect": false
       }
     },
     "package": {
       "executor": "nx-electron:package",
+      "dependsOn": ["build"],
+      "outputs": ["{options.outputPath}"],
+      "cache": true,
       "options": {
         "name": "studio-desktop-app",
         "frontendProject": "studio-desktop-app-ui",
         "sourcePath": "dist/apps",
-        "outputPath": "dist/packages",
+        "outputPath": "dist/packages/studio-desktop-app",
         "prepackageOnly": true
       }
     },
     "make": {
       "executor": "nx-electron:make",
+      "dependsOn": ["build"],
+      "outputs": ["{options.outputPath}"],
+      "cache": true,
       "options": {
         "name": "studio-desktop-app",
         "frontendProject": "studio-desktop-app-ui",
         "sourcePath": "dist/apps",
-        "outputPath": "dist/executables"
+        "outputPath": "dist/executables/studio-desktop-app"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "cache": true,
       "options": {
-        "lintFilePatterns": ["apps/studio-desktop-app/**/*.ts"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts"]
       }
     }
   }

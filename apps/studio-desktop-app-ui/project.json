@@ -9,19 +9,20 @@
     "build": {
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
+      "cache": true,
       "options": {
-        "outputPath": "dist/apps/studio-desktop-app-ui",
-        "browser": "apps/studio-desktop-app-ui/src/main.ts",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "browser": "{projectRoot}/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/studio-desktop-app-ui/tsconfig.app.json",
+        "tsConfig": "{projectRoot}/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/studio-desktop-app-ui/public"
+            "input": "{projectRoot}/public"
           }
         ],
-        "styles": ["apps/studio-desktop-app-ui/src/styles.scss"]
+        "styles": ["{projectRoot}/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -48,8 +49,8 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "continuous": true,
       "executor": "@angular/build:dev-server",
+      "continuous": true,
       "configurations": {
         "production": {
           "buildTarget": "studio-desktop-app-ui:build:production"
@@ -63,23 +64,10 @@
         "proxyConfig": "apps/studio-desktop-app-ui/proxy.conf.json"
       }
     },
-    "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
-      "options": {
-        "buildTarget": "studio-desktop-app-ui:build"
-      }
-    },
     "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "serve-static": {
-      "continuous": true,
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "studio-desktop-app-ui:build",
-        "staticFilePath": "dist/apps/studio-desktop-app-ui/browser",
-        "spa": true
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "cache": true
     }
   }
 }
