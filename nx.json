@@ -1,6 +1,24 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultProject": "studio-desktop-app",
+  "release": {
+    "version": {
+      "versionPrefix": "~",
+      "conventionalCommits": false
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "file": false,
+        "createRelease": "github"
+      }
+    },
+    "groups": {
+      "desktop-app": {
+        "projects": ["studio-desktop-app", "studio-desktop-app-ui"],
+        "projectsRelationship": "fixed"
+      }
+    }
+  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
