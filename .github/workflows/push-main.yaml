@@ -32,16 +32,16 @@ jobs:
 
       - name: Run linting
         shell: bash
-        run: npx nx affected -t lint --base $NX_BASE --head $NX_HEAD
+        run: npx nx affected -t lint --base "$NX_BASE" --head "$NX_HEAD"
 
       - name: Check formatting
         shell: bash
-        run: npx nx format:check --base $NX_BASE --head $NX_HEAD
+        run: npx nx format:check --base "$NX_BASE" --head "$NX_HEAD"
 
       - name: Compile projects
         shell: bash
-        run: npx nx affected -t build --base $NX_BASE --head $NX_HEAD
+        run: npx nx affected -t build --base "$NX_BASE" --head "$NX_HEAD"
 
       - name: Run tests
         shell: bash
-        run: npx nx affected -t test --base $NX_BASE --head $NX_HEAD
+        run: npx nx affected -t test --base "$NX_BASE" --head "$NX_HEAD"
