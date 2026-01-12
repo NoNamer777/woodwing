@@ -17,19 +17,8 @@ jobs:
           fetch-depth: 0
           filter: tree:0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          cache: npm
-          cache-dependency-path: ./package-lock.json
-          node-version-file: ./.tool-versions
-
-      - name: Install dependencies
-        shell: bash
-        run: npm ci
-
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
+      - name: Setup workspace
+        uses: ./.github/actions/setup-workspace
 
       - name: Run linting
         shell: bash
