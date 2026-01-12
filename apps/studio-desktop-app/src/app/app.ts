@@ -1,4 +1,4 @@
-import { BrowserWindow, shell, screen } from 'electron';
+import { BrowserWindow, screen, Menu } from 'electron';
 import { rendererAppName, rendererAppPort } from './constants';
 import { environment } from '../environments/environment';
 import { join } from 'path';
@@ -59,7 +59,22 @@ export default class App {
         preload: join(__dirname, 'main.preload.js'),
       },
     });
-    App.mainWindow.setMenu(null);
+    const menu = Menu.buildFromTemplate([
+      {
+        label: 'View',
+        submenu: [
+          {
+            label: 'Toggle Develop Tools',
+            accelerator: 'Ctrl+I',
+            click: () => {
+              App.mainWindow.webContents.toggleDevTools();
+            }
+          }
+        ]
+      }
+    ])
+
+    App.mainWindow.setMenu(menu);
     App.mainWindow.center();
 
     // if main window is ready to show, close the splash window and show the main window
