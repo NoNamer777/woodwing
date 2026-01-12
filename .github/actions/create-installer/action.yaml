@@ -14,3 +14,9 @@ runs:
     - name: Create installer
       shell: bash
       run: npx nx make studio-desktop-app -c ${{ inputs.configuration }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ inputs.configuration }}
+        path: dist/executables/studio-desktop-app/${{ inputs.configuration }}
